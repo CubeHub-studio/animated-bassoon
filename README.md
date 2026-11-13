@@ -25,13 +25,30 @@ Requires Python 3.10 or newer. Tkinter is included with most standard Windows Py
 python app.py
 ```
 
-## Build locally
+## Build a Cubes Archive (.epa)
+
+NOVA DESK includes a `main.py` EPA entrypoint that launches the existing `app.py`. No additional runtime packages are required for the EPA version; Tkinter and the rest of the app use Python's standard library.
+
+With Cubes Archive installed, run these commands from the repository directory:
+
+```powershell
+cubes create . -o ..\\NOVA-DESK.epa --name "NOVA DESK" --app-version "1.0.0" --publisher "Cubes, Studio." --description "A focus timer and scratchpad desktop app."
+cubes verify ..\\NOVA-DESK.epa
+cubes inspect ..\\NOVA-DESK.epa
+cubes run ..\\NOVA-DESK.epa
+```
+
+The archive includes the project files in this repository. Cubes Archive launches the Python entrypoint using the installed Python interpreter, so the target Windows installation needs Python with Tkinter available. EPA is not a standalone executable and does not bundle Python.
+
+The scratchpad and last timer preset are stored locally in `%USERPROFILE%\\.nova_desk.json`.
+
+## Build a standalone Windows executable
+
+This is a separate build path from EPA and requires PyInstaller:
 
 ```powershell
 python -m pip install -r requirements.txt
 pyinstaller --noconfirm --clean --onefile --windowed --name "NOVA-DESK" app.py
 ```
 
-The executable will be in `dist\NOVA-DESK.exe`.
-
-Your scratchpad and last timer preset are stored locally in `%USERPROFILE%\.nova_desk.json`.
+The executable will be in `dist\\NOVA-DESK.exe`.
