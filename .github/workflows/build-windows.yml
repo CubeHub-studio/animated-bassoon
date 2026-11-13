@@ -3,7 +3,6 @@ name: Build NOVA DESK for Windows
 on:
   workflow_dispatch:
   push:
-    branches: [main, master]
     paths:
       - "app.py"
       - "requirements.txt"
@@ -27,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Build standalone executable
-        run: pyinstaller --noconfirm --clean --onefile --windowed --name "NOVA-DESK" --collect-all tkinter app.py
+        run: pyinstaller --noconfirm --clean --onefile --windowed --name "NOVA-DESK" app.py
       - name: Upload executable
         uses: actions/upload-artifact@v4
         with:
