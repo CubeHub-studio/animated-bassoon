@@ -1,0 +1,12 @@
+"""EPA entrypoint for NOVA DESK.
+
+Cubes Archive requires a file named main.py. Keep the actual application in
+app.py and delegate execution to it.
+"""
+
+from pathlib import Path
+import runpy
+
+
+if __name__ == "__main__":
+    runpy.run_path(str(Path(__file__).with_name("app.py")), run_name="__main__")
