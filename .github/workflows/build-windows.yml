@@ -6,6 +6,7 @@ on:
     paths:
       - "app.py"
       - "requirements.txt"
+      - "version_info.txt"
       - ".github/workflows/build-windows.yml"
 
 permissions:
@@ -26,7 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Build standalone executable
-        run: pyinstaller --noconfirm --clean --onefile --windowed --name "NOVA-DESK" app.py
+        run: pyinstaller --noconfirm --clean --onefile --windowed --name "NOVA-DESK" --version-file=version_info.txt app.py
       - name: Upload executable
         uses: actions/upload-artifact@v4
         with:
